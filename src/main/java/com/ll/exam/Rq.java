@@ -22,10 +22,21 @@ public class Rq {
         if(s==null){
             return i;
         }
-        return Integer.parseInt(req.getParameter(s));
+
+        try {
+            return Integer.parseInt(req.getParameter(s));
+        }
+        catch (Exception e){
+            return i;
+        }
     }
 
-    public void appendBody(String formatted) throws IOException {
-        resp.getWriter().append(formatted);
+    public void appendBody(String body) throws IOException {
+        try{
+            resp.getWriter().append(body);
+        }
+        catch (Exception e){
+            throw new RuntimeException(e);
+        }
     }
 }
